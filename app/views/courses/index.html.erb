@@ -1,0 +1,22 @@
+<h1>Courses#index</h1>
+<p>Find me in app/views/courses/index.html.erb</p>
+
+<br>
+<br>
+<br>
+<% if @courses.empty? %>
+    <h2>You do not have any courses just yet.</h2>
+<% else %>
+    <% @courses.each do |c| %>
+        Language: <%= c.language %> <br>
+        Level: <%= c.level %> <br>
+        Age Group: <%= c.age_group %> <br>
+        Class Size: <%= c.class_size %> <br>
+        Location: <%= c.location %> <br>
+        Day: <%= c.day %> <br>
+        Time: <%= c.time %> <br>
+        Student: <%= c.student.first_name %> <br>
+    <% end %>
+<% end %>
+<br>
+<br>

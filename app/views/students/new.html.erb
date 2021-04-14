@@ -1,0 +1,31 @@
+<h1>Students#new</h1>
+<p>Find me in app/views/students/new.html.erb</p>
+
+<% if @student.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@student.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+    <ul>
+      <% @student.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_with model: @student do |f| %>
+  <%= f.label "First Name" %>
+  <%= f.text_field :first_name %>
+  <br>
+
+  <%= f.label "Last Name" %>
+  <%= f.text_field :last_name %>
+  <br>
+
+    <%= f.label "email" %>
+    <%= f.text_field :email %>
+    <br>
+    <%= f.label "password" %>
+    <%= f.password_field :password  %>
+    <br>
+    <%= f.submit %>
+<% end %> 

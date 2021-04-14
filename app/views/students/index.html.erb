@@ -1,0 +1,16 @@
+<h1>Students#index</h1>
+<p>Find me in app/views/students/index.html.erb</p>
+
+<% @students.each do |student| %>
+    <p>
+    <%= link_to student.username, student_path(student) %>
+    <a href='/students/<%= student.id %>'><%= student.username %></a>
+    </p>
+    <% end %>
+
+
+<div>
+<% @students.each do |student| %>
+  <div><%= student.to_s %></div>
+<% end %>
+</div>
