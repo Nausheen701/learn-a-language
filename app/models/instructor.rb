@@ -3,9 +3,9 @@ class Instructor < ApplicationRecord
   has_many :courses
   has_many :students, through: :courses
 
-  # validates :first_name, :last_name, :username, presence: true
+  validates :first_name, :last_name, :username, presence: true
   validates :username, uniqueness: true
-  # validates :password, length: { in: 6..14}
+  validates :password, length: { in: 6..14}
   validates :bio, length: { maximum: 500}
 
   def to_s

@@ -14,8 +14,11 @@ class InstructorsController < ApplicationController
 
   def create
     @instructor = Instructor.new(instructor_params)
-    @instructor.save
-    redirect_to instructor_path(@instructor)
+    if @instructor.save
+      redirect_to instructor_path(@instructor)
+    else 
+      render :new
+    end
   end
 
   def edit
@@ -33,8 +36,6 @@ class InstructorsController < ApplicationController
 
   def delete
   end
-
-  
 
   private 
 

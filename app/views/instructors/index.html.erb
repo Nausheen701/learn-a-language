@@ -1,9 +1,7 @@
 <h1>Instructors#index</h1>
-<p>Find me in app/views/instructors/index.html.erb</p>
 
 <% @instructors.each do |instructor| %>
     <p>
     <%= link_to instructor.username, instructor_path(instructor) %>
-    <a href='/instructors/<%= instructor.id %>'><%= instructor.username %></a>
     </p>
     <% end %>

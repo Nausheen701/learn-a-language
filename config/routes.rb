@@ -6,9 +6,25 @@ Rails.application.routes.draw do
 # where our routes live
 # define a rouote, map to a controller action
 # ReStful routes
-resources :students # this gives us the 7 restful routes, do not need to write them out
-resources :instructors
+
+#nested routes should go in one direction
+#parent to child
+
+#only nested routes we want are index, new, create
+
+resources :students do  # this gives us the 7 restful routes, do not need to write them out
+  resources :courses, only: [:index, :new, :create] #7 restful routes for nested resoureces
+end
 resources :courses
+
+# resources :courses, only [:index, :new, :create] # anything non-nested
+# # only nested routes we want are index, new, create
+# resources :students do  # this gives us the 7 restful routes, do not need to write them out
+#   resources :courses, shallow: true #7 restful routes for nested resoureces
+# end
+
+resources :instructors
+resources :courses # anything non-nested
 resources :program
 
 # # show all users

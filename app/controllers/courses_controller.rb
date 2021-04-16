@@ -1,16 +1,27 @@
 class CoursesController < ApplicationController
+  before_action :set_donation, except: [:index, :new, :create]
    
   def index #responsible for showing all courses route: '/courses' path: courses_path
-    @courses = Course.all
-
+    if params[:student_id]
+      @student = Student.find_by(params[:student_id])
+      @courses = @student.courses
+    else
+      @courses = Course.all
+    end
   end
 
   def new #responsibile for rending a new form route: 'courses/new' path: new_course_path
-    @course = Course.new
-    @course.build_instructor #creates an empty associated object
+    if params[:student_id]
+      @student = Student.find_by(params[:student_id])
+      @course = @student.courses.build
+    else
+      @course = Course.new
+      @course.build_student#creates an empty associated object
   end
 
   def create #responsible for processing submitted new form route: '/courses'
+    if params[:student_id]
+      @
     @course = Course.new(course_params(:language, :level, :age_group, :class_size, :location, :day, :time))
     if @course.save
       redirect_to courses_path

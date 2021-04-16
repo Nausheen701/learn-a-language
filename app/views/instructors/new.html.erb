@@ -1,5 +1,4 @@
-<h1>Instructors#new</h1>
-<p>Find me in app/views/instructors/new.html.erb</p>
+<h1>Instructor Signup</h1>
 
 <% if @instructor.errors.any? %>
   <div id="error_explanation">
@@ -8,6 +7,8 @@
     <ul>
       <% @instructor.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
+
+      else 
       <% end %>
     </ul>
   </div>
@@ -17,13 +18,14 @@
     <%= f.label "First Name" %>
     <%= f.text_field :first_name %>
     <br>
-
     <%= f.label "Last Name" %>
     <%= f.text_field :last_name %>
     <br>
-
     <%= f.label "email" %>
     <%= f.text_field :email %>
+    <br>
+    <%= f.label "Username" %>
+    <%= f.text_field :Username %>
     <br>
     <%= f.label "password" %>
     <%= f.password_field :password %>
