@@ -1,8 +1,12 @@
-<h1>Instructors#show</h1>
 
-<h1><%= @instructor.to_s%></h1>
 
-<h1><%= "hello" %><h1>
+<h2><%= "Hello,"%><h2> 
+<h2><%= "Hello"%> <%= @instructor.to_s%><%= ","%></h2>
+
+<h4>This is your Instructor Profile (instructor#show)</h4>
+
+
+<%= link_to "Complete your profile", edit_instructor_path(@instructor) %>
 
 
 
