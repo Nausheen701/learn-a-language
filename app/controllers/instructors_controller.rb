@@ -26,13 +26,22 @@ class InstructorsController < ApplicationController
   end
 
   def update
-    @instructor = Instructor.find(params[:id])
-	  if @instructor.update(instructor_params)
+    @instructor = Instructor.find_by_id(params[:id])
+	  if @instructor.update(instructor_params[:date_of_birth])
       redirect_to instructor_path(@instructor)
     else  
       render :edit
     end
   end
+
+  # def update
+  #   @instructor = Instructor.find_by_id(params[:id])
+	#   if @instructor.update(instructor_params)
+  #     redirect_to instructor_path(@instructor)
+  #   else  
+  #     render :edit
+  #   end
+  # end
 
   def delete
   end
@@ -40,7 +49,7 @@ class InstructorsController < ApplicationController
   private 
 
   def instructor_params
-      params.require(:instructor).permit(:first_name, :last_name, :email, :username, :password, :phone, :nationality, :native_language, :other_languages, :instructional_languages, :date_of_birth, :bio)
+      params.require(:instructor).permit(:first_name, :last_name, :email, :username, :password, :nationality, :native_language, :other_languages, :instructional_languages, :date_of_birth, :bio)
   
   end
 end
