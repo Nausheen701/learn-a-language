@@ -2,9 +2,9 @@ class CoursesController < ApplicationController
   before_action :set_donation, except: [:index, :new, :create]
    
   def index #responsible for showing all courses route: '/courses' path: courses_path
-    if params[:student_id]
-      @student = Student.find_by(params[:student_id])
-      @courses = @student.courses
+    if params[:instructor_id]
+      @instructor = Instructor.find_by(params[:instructor_id])
+      @courses = @instructor.courses
     else
       @courses = Course.all
     end
@@ -12,19 +12,24 @@ class CoursesController < ApplicationController
 
   def new #responsibile for rending a new form route: 'courses/new' path: new_course_path
     if params[:student_id]
-      @student = Student.find_by(params[:student_id])
-      @course = @student.courses.build
+      @instructor = Instructor.find_by(params[:instructor_id])
+      @course = @sinstructor.courses.build
     else
       @course = Course.new
-      @course.build_student#creates an empty associated object
+      @course.build_instructor#creates an empty associated object
   end
 
   def create #responsible for processing submitted new form route: '/courses'
-    if params[:student_id]
-      @
-    @course = Course.new(course_params(:language, :level, :age_group, :class_size, :location, :day, :time))
+    if params[:instructor_id]
+      @instructor = Instructor.find_by(params[:instructor_id])
+      @course = @sinstructor.courses.build(course_params)
+      # @course = Course.new(course_params(:language, :level, :age_group, :class_size, :location, :day, :time))
+    else 
+      @course = Course.new(course_params)
+    end
+
     if @course.save
-      redirect_to courses_path
+      redirect_to course_path(@course)
     else
       render :new
     end
@@ -57,4 +62,5 @@ class CoursesController < ApplicationController
     params.require(:course).permit(:language, :level, :age_group, :class_size, :location, :day, :time)
   end
 
+end
 end
