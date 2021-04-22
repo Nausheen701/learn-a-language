@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_donation, except: [:index, :new, :create]
+  before_action :set_course, except: [:index, :new, :create]
    
   def index #responsible for showing all courses route: '/courses' path: courses_path
     if params[:instructor_id]
@@ -11,7 +11,7 @@ class CoursesController < ApplicationController
   end
 
   def new #responsibile for rending a new form route: 'courses/new' path: new_course_path
-    if params[:student_id]
+    if params[:instructor_id]
       @instructor = Instructor.find_by(params[:instructor_id])
       @course = @instructor.courses.build
     else
@@ -44,12 +44,16 @@ class CoursesController < ApplicationController
   end
 
   def update
-    @course = Course.find_by_id(params[:id])
-    @course.update(course_params(:language))
+    # @course = Course.find_by_id(params[:id])
+    if @course.update(course_params)
+      redirect_to course_path(@course)
+    else
+      render :edit
+    end
   end
 
   def destroy
-    @course = Course.find_by_id(params[:id])
+    # @course = Course.find_by_id(params[:id])
     @course.destroy
     redirect_to courses_path
   end
