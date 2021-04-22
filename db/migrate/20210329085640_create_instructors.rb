@@ -6,14 +6,15 @@ class CreateInstructors < ActiveRecord::Migration[6.1]
       t.string :email
       t.string :username
       t.string :password_digest
-      t.string :phone
-      t.string :number
+      t.string :phone_number
       t.string :nationality
       t.string :ethnicity
       t.string :native_language
       t.string :other_languages
       t.string :instructional_languages
       t.date :date_of_birth
+      t.text :education
+      t.text :teaching_experience
       t.text :bio
 
       t.timestamps

@@ -6,8 +6,7 @@ class CreateStudents < ActiveRecord::Migration[6.1]
       t.string :email
       t.string :username
       t.string :password_digest
-      t.string :phone
-      t.string :number
+      t.string :phone_number
       t.string :nationality
       t.string :ethnicity
       t.string :native_language

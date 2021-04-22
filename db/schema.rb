@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_18_094557) do
+ActiveRecord::Schema.define(version: 2021_04_01_105953) do
 
   create_table "courses", force: :cascade do |t|
     t.string "language"
@@ -19,13 +19,12 @@ ActiveRecord::Schema.define(version: 2021_04_18_094557) do
     t.string "class_size"
     t.string "location"
     t.string "day"
-    t.string "time"
+    t.time "start_time"
+    t.time "end_time"
+    t.integer "student_id"
+    t.integer "instructor_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "instructors_id", null: false
-    t.integer "students_id", null: false
-    t.index ["instructors_id"], name: "index_courses_on_instructors_id"
-    t.index ["students_id"], name: "index_courses_on_students_id"
   end
 
   create_table "instructors", force: :cascade do |t|
@@ -34,14 +33,15 @@ ActiveRecord::Schema.define(version: 2021_04_18_094557) do
     t.string "email"
     t.string "username"
     t.string "password_digest"
-    t.string "phone"
-    t.string "number"
+    t.string "phone_number"
     t.string "nationality"
     t.string "ethnicity"
     t.string "native_language"
     t.string "other_languages"
     t.string "instructional_languages"
     t.date "date_of_birth"
+    t.text "education"
+    t.text "teaching_experience"
     t.text "bio"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -61,8 +61,7 @@ ActiveRecord::Schema.define(version: 2021_04_18_094557) do
     t.string "email"
     t.string "username"
     t.string "password_digest"
-    t.string "phone"
-    t.string "number"
+    t.string "phone_number"
     t.string "nationality"
     t.string "ethnicity"
     t.string "native_language"
@@ -71,12 +70,6 @@ ActiveRecord::Schema.define(version: 2021_04_18_094557) do
     t.text "bio"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "courses_id", null: false
-    t.string "phone_number"
-    t.index ["courses_id"], name: "index_students_on_courses_id"
   end
 
-  add_foreign_key "courses", "instructors", column: "instructors_id"
-  add_foreign_key "courses", "students", column: "students_id"
-  add_foreign_key "students", "courses", column: "courses_id"
 end

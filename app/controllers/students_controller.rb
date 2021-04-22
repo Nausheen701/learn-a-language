@@ -6,7 +6,7 @@ class StudentsController < ApplicationController
   end
 
   def show
-    @student = Student.find(params[:id])
+    @student = Student.find_by_id(params[:id])
   end
 
   def new
@@ -23,11 +23,11 @@ class StudentsController < ApplicationController
   end
 
   def edit
-    @student = Student.find(params[:id])
+    @student = Student.find_by_id(params[:id])
   end
 
   def update
-    @student = Student.find(params[:id])
+    @student = Student.find_by_id(params[:id])
     if @student.update(student_params)
         redirect_to student_path(@student)
     else  
