@@ -1,5 +1,8 @@
 class Instructor < ApplicationRecord
   has_secure_password
+  # .authenticate
+  # reader and writers for the password
+  #  validates the prresence of password
   has_many :courses
   has_many :students, through: :courses
 

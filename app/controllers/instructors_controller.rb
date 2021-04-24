@@ -8,15 +8,23 @@ class InstructorsController < ApplicationController
     @instructor = Instructor.find_by_id(params[:id])
   end
 
-  def new
-    @instructor = Instructor.new
+  def new #render a signup form
+    if !logged_in?
+      @instructor = Instructor.new
+    else
+        redirect_to root_path
+    end
   end
 
-  def create
-    @instructor = Instructor.new(instructor_params)
-    if @instructor.save
-      redirect_to instructor_path(@instructor)
+  def create #process sign up form
+    instructor = Instructor.new(instructor_params)
+    if instructor.save
+      # log user in
+      session[:instructor_id] = instructor.id
+      redirect_to root_path #takes them to welcome page
     else 
+      # show some errors
+      # make them try again
       render :new
     end
   end
