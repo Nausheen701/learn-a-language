@@ -22,7 +22,7 @@ class CoursesController < ApplicationController
   def create #responsible for processing submitted new form route: '/courses'
     if params[:instructor_id]
       @instructor = Instructor.find_by(params[:instructor_id])
-      @course = @sinstructor.courses.build(course_params)
+      @course = @instructor.courses.build(course_params)
       # @course = Course.new(course_params(:language, :level, :age_group, :class_size, :location, :day, :time))
     else 
       @course = Course.new(course_params)
@@ -58,7 +58,7 @@ class CoursesController < ApplicationController
     redirect_to courses_path
   end
 
-  private
+  # private
 
   def course_params #strong params: permits fields being submitted
     params.require(:course).permit(:language, :level, :age_group, :class_size, :location, :day, :start_time, :end_time)

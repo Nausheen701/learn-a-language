@@ -6,6 +6,11 @@
     <%= @instructor.first_name %> <%= @instructor.last_name %>'s Courses 
 <% elsif @courses.empty? %>
     <h2>You do not have any courses just yet.</h2>
+      
+    <p>
+    <%= link_to instructor_path(instructor) %>
+    </p>
+           
 <% else %>
     <% @courses.each do |c| %>
         Language: <%= c.language %> <br>

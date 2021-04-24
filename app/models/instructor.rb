@@ -7,7 +7,7 @@ class Instructor < ApplicationRecord
   # validates :username, uniqueness: true
   validates :password, length: {in: 6..14} 
   
-  validates :bio, length: { maximum: 500}
+  validates :bio, length: {maximum: 500}
 
   def to_s
     self.first_name + " " + self.last_name
