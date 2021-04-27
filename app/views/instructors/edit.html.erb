@@ -3,29 +3,29 @@
 
 <%= form_with model: @instructor do |f| %>
     <br>
-    <%= f.label "My date of birth" %>
+    <%= f.label "date_of_birth" %>
     <br>
     <%= f.date_field :date_of_birth %>
     <br>
     <br>
-    <%= f.label "My nationality" %>
+    <%= f.label "nationality" %>
     <br>
     <%= f.text_field :nationality %>
     <br>
     <br>
-    <%= f.label "My ethnicity" %>
+    <%= f.label "ethnicity" %>
     <br>
     <%= f.text_field :ethnicity %>
     <br>
     <br>
-    <%= f.label "My education" %>
+    <%= f.label "education" %>
     <br>
-    <%= f.text_field :education %>
+    <%= f.text_area :education %>
     <br>
     <br>
     <%= f.label "My teaching experience" %>
     <br>
-    <%= f.text_field :teaching_experience %>
+    <%= f.text_area :teaching_experience %>
     <br>
     <br>
     <%= f.label "My native language" %>

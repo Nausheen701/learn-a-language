@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
+  
   def new #render the login form
     if logged_in?
-        redirect_to instructor_path(@instructor)
+        redirect_to instructor_path(current_instructor)
     end
   end
 
@@ -9,7 +10,7 @@ class SessionsController < ApplicationController
     instructor = Instructor.find_by(username: params[:username])
     if instructor && instructor.authenticate(params[:password])
       session[:instructor_id] = instructor.id
-      redirect_to instructor_path
+      redirect_to instructor_path(instructor)
     else 
       render :new
     end

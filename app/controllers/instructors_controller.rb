@@ -21,7 +21,7 @@ class InstructorsController < ApplicationController
     if instructor.save
       # log user in
       session[:instructor_id] = instructor.id
-      redirect_to root_path #takes them to welcome page
+      redirect_to instructor_path(instructor) #takes them to welcome page
     else 
       # show some errors
       # make them try again
@@ -35,23 +35,17 @@ class InstructorsController < ApplicationController
 
   def update
     @instructor = Instructor.find_by_id(params[:id])
-	  if @instructor.update(instructor_params)
+	  @instructor.update(instructor_params)
       redirect_to instructor_path(@instructor)
-    else  
-      render :edit
-    end
+    # else  
+    #   render :edit
+    # end
   end
 
-  # def update
-  #   @instructor = Instructor.find_by_id(params[:id])
-	#   if @instructor.update(instructor_params)
-  #     redirect_to instructor_path(@instructor)
-  #   else  
-  #     render :edit
-  #   end
-  # end
 
   def delete
+    session.delete :instructor_id
+    redirect_to login_path
   end
 
   private 

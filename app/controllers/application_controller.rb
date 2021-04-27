@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
     def root
         if !logged_in?
             redirect_to login_path 
-        # redirect_to new_course_path
         end
     end 
 

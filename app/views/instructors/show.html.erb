@@ -4,14 +4,10 @@
 <h2><%= "Hello"%> <%= @instructor.to_s%><%= ","%></h2>
 
 <h4>This is your Instructor Profile (instructor#show)</h4>
-
-<%= @instructor.first_name %>
-<br>
-<%= @instructor.last_name %>
-<br>
-<%= @instructor.date_of_birth %>
-<br>
-<%= @instructor.email %>
+<p>First Name: <%= @instructor.first_name %> </p> 
+<p> Last Name: <%= @instructor.last_name %> </p> 
+<p >DOB: <%= @instructor.date_of_birth %> </p>
+<p> Email: </p> <%= @instructor.email %>
 <br>
 <%= @instructor.phone_number %>
 <br>
@@ -32,11 +28,10 @@
 <%= @instructor.bio %>
 <br>
 
-
-
 <br>
 
 <%= link_to "Complete your profile", edit_instructor_path(@instructor) %>
-
+<br>
+<%= link_to "Log out", '/logout', method: 'destroy' %>
 
 
