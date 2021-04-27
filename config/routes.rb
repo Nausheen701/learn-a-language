@@ -2,12 +2,12 @@ Rails.application.routes.draw do
   get 'students_sessions/new'
   get 'students_sessions/create'
   get 'students_sessions/destroy'
-  get 'sessions/new'
-  get 'sessions/create'
-  get 'sessions/destroy'
+  get 'instructors_sessions/new'
+  get 'instructors_sessions/create'
+  get 'instructors_sessions/destroy'
   root to: 'pages#home'
-  get '/signup', to: 'users#new'
-  post '/signup', to: 'users#create'
+  get '/signup', to: 'instructors#new'
+  post '/signup', to: 'instructors#create'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
@@ -35,6 +35,7 @@ end
 # end
 
 resources :instructors
+resources :students
 resources :courses # anything non-nested
 resources :program
 

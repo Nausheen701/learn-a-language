@@ -4,8 +4,7 @@
 <h2><%= "Hello"%> <%= @instructor.to_s%><%= ","%></h2>
 
 <h4>This is your Instructor Profile (instructor#show)</h4>
-<p>First name: <%= @instructor.first_name %> </p> 
-<p> Last name: <%= @instructor.last_name %> </p> 
+<p> Name: <%= @instructor.first_name %> <%= @instructor.last_name %> </p> 
 <p> DOB: <%= @instructor.date_of_birth %> </p>
 <p> Email: <%= @instructor.email %> </p>
 <p> Phone: <%= @instructor.phone_number %> </p>

@@ -50,10 +50,6 @@ class StudentsController < ApplicationController
   # end
 
 
-
-
-
-
   def edit
     @student = Student.find_by_id(params[:id])
   end
@@ -76,5 +72,6 @@ class StudentsController < ApplicationController
     params.require(:student).permit(:first_name, :last_name, :email, :username, :password, :phone_number, :nationality, :native_language, :other_languages, :date_of_birth, :bio)
   end
  
+
 
 end

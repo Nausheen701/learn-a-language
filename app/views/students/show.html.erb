@@ -1,2 +1,21 @@
 <h1>Students#show</h1>
 <p>Find me in app/views/students/show.html.erb</p>
+
+<h2><%= "Hello"%> <%= @student.to_s%><%= ","%></h2>
+
+<h4>This is your Student Profile (student#show)</h4>
+<p> Name: <%= @student.first_name %>  <%= @student.last_name %> </p> 
+<p> DOB: <%= @student.date_of_birth %> </p>
+<p> Email: <%= @student.email %> </p>
+<p> Phone: <%= @student.phone_number %> </p>
+<p> Username: <%= @student.username %> </p>
+<p> Nationality: <%= @student.nationality %> </p>
+<p> Ethnicity: <%= @student.ethnicity %> </p>
+<p> Native language: <%= @student.native_language%> </p>
+<p> Other Languages: <%= @student.other_languages%> </p>
+<p> Bio: <%= @student.bio %> </p>
+
+
+<%= link_to "Complete your profile", edit_student_path(@student) %>
+<br>
+<%= link_to "Log out", '/logout', method: 'destroy' %>
