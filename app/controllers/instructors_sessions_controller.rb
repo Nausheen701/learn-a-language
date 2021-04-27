@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class InstructorsSessionsController < ApplicationController
   
   def new #render the login form
     if logged_in?

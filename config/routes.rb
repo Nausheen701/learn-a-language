@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'students_sessions/new'
+  get 'students_sessions/create'
+  get 'students_sessions/destroy'
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/destroy'
