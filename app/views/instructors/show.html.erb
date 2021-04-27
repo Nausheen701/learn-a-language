@@ -4,31 +4,21 @@
 <h2><%= "Hello"%> <%= @instructor.to_s%><%= ","%></h2>
 
 <h4>This is your Instructor Profile (instructor#show)</h4>
-<p>First Name: <%= @instructor.first_name %> </p> 
-<p> Last Name: <%= @instructor.last_name %> </p> 
-<p >DOB: <%= @instructor.date_of_birth %> </p>
-<p> Email: </p> <%= @instructor.email %>
-<br>
-<%= @instructor.phone_number %>
-<br>
-<%= @instructor.nationality %>
-<br>
-<%= @instructor.ethnicity %>
-<br>
-<%= @instructor.native_language %>
-<br>
-<%= @instructor.other_languages %>
-<br>
-<%= @instructor.instructional_languages %>
-<br>
-<%= @instructor.education %>
-<br>
-<%= @instructor.teaching_experience %>
-<br>
-<%= @instructor.bio %>
-<br>
+<p>First name: <%= @instructor.first_name %> </p> 
+<p> Last name: <%= @instructor.last_name %> </p> 
+<p> DOB: <%= @instructor.date_of_birth %> </p>
+<p> Email: <%= @instructor.email %> </p>
+<p> Phone: <%= @instructor.phone_number %> </p>
+<p> Username: <%= @instructor.username %> </p>
+<p> Education: <%= @instructor.education %> </p>
+<p> Teaching experience: <%= @instructor.education %> </p>
+<p> Nationality: <%= @instructor.nationality %> </p>
+<p> Ethnicity: <%= @instructor.ethnicity %> </p>
+<p> Native language: <%= @instructor.native_language%> </p>
+<p> Other Languages: <%= @instructor.other_languages%> </p>
+<p> Instructional languages: <%= @instructor.instructional_languages %> </p>
+<p> Bio: <%= @instructor.bio %> </p>
 
-<br>
 
 <%= link_to "Complete your profile", edit_instructor_path(@instructor) %>
 <br>

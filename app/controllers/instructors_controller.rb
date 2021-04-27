@@ -35,6 +35,7 @@ class InstructorsController < ApplicationController
 
   def update
     @instructor = Instructor.find_by_id(params[:id])
+    binding.pry
 	  @instructor.update(instructor_params)
       redirect_to instructor_path(@instructor)
     # else  

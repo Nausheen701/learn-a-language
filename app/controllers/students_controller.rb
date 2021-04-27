@@ -9,17 +9,50 @@ class StudentsController < ApplicationController
   end
 
   def new
-    @student = Student.new
+    if !logged_in?
+      @student = Student.new
+    else
+        redirect_to root_path
+    end
+    
   end
 
   def create
-    @student = Student.new(student_params)
-    if @student.save 
-        redirect_to student_path(@student) 
+    student = Student.new(student_params)
+    if student.save 
+      session[:student_id] = student.id 
+      redirect_to student_path(student) 
     else
         render :new
     end
   end
+
+  # def create
+  #   @student = Student.new(student_params)
+  #   if @student.save 
+  #       redirect_to student_path(@student) 
+  #   else
+  #       render :new
+  #   end
+  # end
+
+  # def create #process sign up form
+  #   instructor = Instructor.new(instructor_params)
+  #   if instructor.save
+  #     # log user in
+  #     session[:instructor_id] = instructor.id
+  #     redirect_to instructor_path(instructor) #takes them to welcome page
+  #   else 
+  #     # show some errors
+  #     # make them try again
+  #     render :new
+  #   end
+  # end
+
+
+
+
+
 
   def edit
     @student = Student.find_by_id(params[:id])
