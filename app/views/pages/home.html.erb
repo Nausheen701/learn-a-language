@@ -34,15 +34,17 @@
 
 
 <%= link_to "Instructor Signup", new_instructor_path %>
-
-<%= link_to "Student Signup", new_student_path %>
-
-
-<br>
-
 <br>
 <a href="/login"><button>Instructor Login</button></a>
 <br>
+<%= link_to "Student Signup", new_student_path %>
+<br>
+
+
+
+<h3>Or Login with Google:</h3>
+
+<%= button_to 'Google', '/auth/google_oauth2' %>
 <br>
     
     <% flash.keys.each do |type| %>

@@ -27,29 +27,6 @@ class StudentsController < ApplicationController
     end
   end
 
-  # def create
-  #   @student = Student.new(student_params)
-  #   if @student.save 
-  #       redirect_to student_path(@student) 
-  #   else
-  #       render :new
-  #   end
-  # end
-
-  # def create #process sign up form
-  #   instructor = Instructor.new(instructor_params)
-  #   if instructor.save
-  #     # log user in
-  #     session[:instructor_id] = instructor.id
-  #     redirect_to instructor_path(instructor) #takes them to welcome page
-  #   else 
-  #     # show some errors
-  #     # make them try again
-  #     render :new
-  #   end
-  # end
-
-
   def edit
     @student = Student.find_by_id(params[:id])
   end
@@ -63,8 +40,9 @@ class StudentsController < ApplicationController
     end
   end
 
-
   def delete
+    session.delete :student_id
+    redirect_to root_path
   end
 
   private

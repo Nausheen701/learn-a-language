@@ -35,7 +35,6 @@ class InstructorsController < ApplicationController
 
   def update
     @instructor = Instructor.find_by_id(params[:id])
-    binding.pry
 	  @instructor.update(instructor_params)
       redirect_to instructor_path(@instructor)
     # else  
@@ -46,7 +45,7 @@ class InstructorsController < ApplicationController
 
   def delete
     session.delete :instructor_id
-    redirect_to login_path
+    redirect_to root_path
   end
 
   private 

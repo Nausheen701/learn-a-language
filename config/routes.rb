@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
-  get '/auth/:provider/callback', to: 'sessions#omniauth'
+  get '/auth/:provider/callback', to: 'sessions#instructor_omniauth'
+  get '/auth/:provider/callback', to: 'sessions#student_omniauth'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
