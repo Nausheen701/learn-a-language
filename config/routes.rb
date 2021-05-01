@@ -1,22 +1,17 @@
 Rails.application.routes.draw do
-  get 'students_sessions/new'
-  get 'students_sessions/create'
-  get 'students_sessions/destroy'
-  get 'instructors_sessions/new'
-  get 'instructors_sessions/create'
-  get 'instructors_sessions/destroy'
+ 
   root to: 'pages#home'
   get '/signup', to: 'instructors#new'
   post '/signup', to: 'instructors#create'
-  get '/login', to: 'sessions#new'
-  post '/login', to: 'sessions#create'
+  get '/login', to: 'sessions#login'
+  post '/login', to: 'instructors#index'
   post '/logout', to: 'sessions#destroy'
-  get '/auth/:provider/callback', to: 'sessions#instructor_omniauth'
-  get '/auth/:provider/callback', to: 'sessions#student_omniauth'
+  get '/auth/:provider/callback', to: 'sessions#omniauth'
+ 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-# where our routes live
+# where our routes are declared/live
 # define a rouote, map to a controller action
 # ReStful routes
 

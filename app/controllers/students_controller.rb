@@ -33,7 +33,9 @@ class StudentsController < ApplicationController
 
   def update
     @student = Student.find_by_id(params[:id])
-    if @student.update(student_params)
+    if @student.attributes=student_params
+      @student.save(:validate => false)
+      # @student.update(student_params)
         redirect_to student_path(@student)
     else  
       render :edit

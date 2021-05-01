@@ -1,7 +1,9 @@
 class InstructorsController < ApplicationController
 
   def index
+   
     @instructors = Instructor.all
+
   end
 
   def show
@@ -11,6 +13,7 @@ class InstructorsController < ApplicationController
   def new #render a signup form
     if !logged_in?
       @instructor = Instructor.new
+      
     else
         redirect_to root_path
     end
@@ -35,7 +38,10 @@ class InstructorsController < ApplicationController
 
   def update
     @instructor = Instructor.find_by_id(params[:id])
-	  @instructor.update(instructor_params)
+    
+    # @instructor.update(instructor_params)
+    @instructor.attributes=instructor_params
+    @instructor.save(:validate => false)
       redirect_to instructor_path(@instructor)
     # else  
     #   render :edit
@@ -45,7 +51,7 @@ class InstructorsController < ApplicationController
 
   def delete
     session.delete :instructor_id
-    redirect_to root_path
+    redirect_to "root_path"
   end
 
   private 
