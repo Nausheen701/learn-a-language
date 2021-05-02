@@ -1,14 +1,14 @@
 
 
-<h2><%= "Hello,"%><h2> 
+
 <h2><%= "Hello"%> <%= @instructor.to_s%><%= ","%></h2>
 
 <h4>This is your Instructor Profile (instructor#show)</h4>
 <p> Name: <%= @instructor.first_name %> <%= @instructor.last_name %> </p> 
-<p> DOB: <%= @instructor.date_of_birth %> </p>
+<p> Username: <%= @instructor.username %> </p>
 <p> Email: <%= @instructor.email %> </p>
 <p> Phone: <%= @instructor.phone_number %> </p>
-<p> Username: <%= @instructor.username %> </p>
+<p> DOB: <%= @instructor.date_of_birth %> </p>
 <p> Education: <%= @instructor.education %> </p>
 <p> Teaching experience: <%= @instructor.teaching_experience %> </p>
 <p> Nationality: <%= @instructor.nationality %> </p>
@@ -19,7 +19,11 @@
 <p> Bio: <%= @instructor.bio %> </p>
 
 
-<%= link_to "Complete your profile", edit_instructor_path(@instructor) %>
+<%= link_to "Edit your profile", edit_instructor_path(@instructor) %>
+<br>
+<%= link_to "Your Courses", instructor_courses_path(@instructor) %>
+<br>
+<%= link_to "All Polyglot Instructors", instructors_path %>
 <br>
 <%= link_to "Log out", '/logout', method: 'destroy' %>
 
