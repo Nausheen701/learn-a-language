@@ -12,6 +12,7 @@ class ProgramController < ApplicationController
   def create #responsible for processing submitted new form route: '/programs'
     @program = Program.new(program_params)
     @program.save
+    redirect_to program_path(@program)
   end
 
   # if @program.save

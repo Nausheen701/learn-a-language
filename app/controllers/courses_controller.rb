@@ -3,16 +3,17 @@ class CoursesController < ApplicationController
    
   def index #responsible for showing all courses route: '/courses' path: courses_path
     if params[:instructor_id]
-      @instructor = Instructor.find_by(params[:instructor_id])
+      @instructor = Instructor.find_by_id(params[:instructor_id])
       @courses = @instructor.courses
+      # binding.pry
     else
       @courses = Course.all
     end
   end
 
-  def new #responsibile for rending a new form route: 'courses/new' path: new_course_path
+  def new #responsibile for rendering a new form route: 'courses/new' path: new_course_path
     if params[:instructor_id]
-      @instructor = Instructor.find_by(params[:instructor_id])
+      @instructor = Instructor.find_by_id(params[:instructor_id])
       @course = @instructor.courses.build
     else
       @course = Course.new
@@ -21,7 +22,7 @@ class CoursesController < ApplicationController
 
   def create #responsible for processing submitted new form route: '/courses'
     if params[:instructor_id]
-      @instructor = Instructor.find_by(params[:instructor_id])
+      @instructor = Instructor.find_by_id(params[:instructor_id])
       @course = @instructor.courses.build(course_params)
       # @course = Course.new(course_params(:language, :level, :age_group, :class_size, :location, :day, :time))
     else 
@@ -35,8 +36,14 @@ class CoursesController < ApplicationController
     end
   end
 
-  def show #responsible for showing single course route: '/course/:id' path: course_path(course_id)
-    @course = Course.find_by_id(params[:id])
+  def show #responsible for showing single course 
+    if params[:instructor_id]
+      @instructor = Instructor.find_by_id(params[:instructor_id])
+      @courses = @instructor.courses
+      # @course = Course.find_by_id(params[:id])
+    else
+      @courses = Course.all
+    end
   end
 
   def edit
