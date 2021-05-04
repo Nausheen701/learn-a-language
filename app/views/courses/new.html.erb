@@ -42,13 +42,14 @@
 
     <%=  f.label "end time" %>
     <%=  f.time_field :end_time %>
-
     <br>
 
-   
 
     <%= f.submit %>
 
 
 
 <% end%>
+
+<br>
+<%= link_to "Your Courses", instructor_courses_path(@instructor) %>

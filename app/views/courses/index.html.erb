@@ -1,13 +1,30 @@
 <h1>Courses#index</h1>
 <p>Find me in app/views/courses/index.html.erb</p>
 
-<h2><%= "Hi" %> <%= @instructor.first_name %> <%= @instructor.last_name %> <%= "," %><h2> 
 <br>
 <% if @courses.empty? %>
    <h2><%= "You do not have any courses just yet." %> </h2>         
    
+    <h2><%= "Hi" %> <%= @instructor.first_name %> <%= @instructor.last_name %> <%= "," %><h2> 
+<% elsif  %>
+  <p> <%= "This is a list of your courses." %> </p>
+      <% @courses.each do |c| %>
+         Language: <%= c.language %> <br>
+         Level: <%= c.level %> <br>
+         Age Group: <%= c.age_group %> <br>
+         Class Size: <%= c.class_size %> <br>
+         Location: <%= c.location %> <br>
+         Day: <%= c.day %> <br>
+         Start Time: <%= c.start_time %> <br>
+         End Time: <%= c.end_time %> <br> 
+      <% end %>
+      <%= link_to "Your profile", instructor_path(@instructor) %>
+      <br>
+      <%= link_to "Add a course", new_instructor_course_path(@instructor) %>
+      <br>
+
 <% else  %>
-   <p> <%= "This is a list of your courses." %> </p>
+   <p> <%= "This is a list of all courses." %> </p>
       <% @courses.each do |c| %>
          Language: <%= c.language %> <br>
          Level: <%= c.level %> <br>
@@ -20,8 +37,4 @@
       <% end %>
 <% end %>
 
-<%= link_to "Your profile", instructor_path(@instructor) %>
-<br>
-<%= link_to "Add a course", new_instructor_course_path(@instructor) %>
-<br>
 <br>

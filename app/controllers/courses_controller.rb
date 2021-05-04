@@ -18,22 +18,27 @@ class CoursesController < ApplicationController
     else
       @course = Course.new
       @course.build_instructor #creates an empty associated object
+    end
   end
 
   def create #responsible for processing submitted new form route: '/courses'
     if params[:instructor_id]
+      
       @instructor = Instructor.find_by_id(params[:instructor_id])
       @course = @instructor.courses.build(course_params)
+      
       # @course = Course.new(course_params(:language, :level, :age_group, :class_size, :location, :day, :time))
     else 
       @course = Course.new(course_params)
     end
 
     if @course.save
-      redirect_to course_path(@course)
+      # redirect_to courses_path
+      # redirect_to instructor_course_path(instructor)
     else
       render :new
     end
+
   end
 
   def show #responsible for showing single course 
@@ -73,5 +78,5 @@ class CoursesController < ApplicationController
     params.require(:course).permit(:language, :level, :age_group, :class_size, :location, :day, :start_time, :end_time)
   end
 
-end
+
 end
