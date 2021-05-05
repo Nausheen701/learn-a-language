@@ -1,7 +1,11 @@
 <h3>Polyglot's Amazing Instructors</h3>
 
+
+
 <% @instructors.each do |instructor| %>
     <p>
     <%= link_to instructor.username, instructor_path(instructor) %>
     </p>
     <% end %>
+
+    

@@ -7,6 +7,8 @@
     <br>
     <%= link_to "Add a course", new_instructor_course_path(@instructor) %>
     <br>
+    <%= link_to "Back to your profile", instructor_path(@instructor) %>
+    <br>
 
 <% elsif @instructor && @instructor.courses %>
   <p> <%= "This is a list of your courses." %> </p>
@@ -38,6 +40,7 @@
          Day: <%= c.day %> <br>
          Start Time: <%= c.start_time %> <br>
          End Time: <%= c.end_time %> <br>
+         <br>
       <% end %>
 <% end %>
 

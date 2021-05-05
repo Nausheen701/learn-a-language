@@ -1,7 +1,9 @@
 class InstructorsController < ApplicationController
 
   def index
-    @instructors = Instructor.all
+    # @instructors = Instructor.all
+    # @instructors = Instructor.ins_courses
+    @instructors = Instructor.alpha
   end
 
   def show

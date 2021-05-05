@@ -25,9 +25,20 @@ class Instructor < ApplicationRecord
 
   end
 
+      # scope method that organizes couorses by their instructors 
+
+    # write a scope method as class method
+
     # def self.ins_courses
     #   joins(:courses).group('instructors.name')
     # end
+
+    # scope method 
+
+    # scope :orgs_donations, -> {joins(:donations).group('organizations.name')}
+        
+    # alphabetize the list of instructors
+    scope :alpha, -> {order('username')}
 
   # reload! => reload console with updated code
 end
