@@ -22,6 +22,7 @@ class CoursesController < ApplicationController
   end
 
   def create #responsible for processing submitted new form route: '/courses'
+   
     if params[:instructor_id]
       
       @instructor = Instructor.find_by_id(params[:instructor_id])

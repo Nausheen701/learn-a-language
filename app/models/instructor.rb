@@ -25,5 +25,9 @@ class Instructor < ApplicationRecord
 
   end
 
+    # def self.ins_courses
+    #   joins(:courses).group('instructors.name')
+    # end
+
   # reload! => reload console with updated code
 end

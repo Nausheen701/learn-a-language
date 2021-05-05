@@ -1,9 +1,7 @@
 class InstructorsController < ApplicationController
 
   def index
-   
     @instructors = Instructor.all
-
   end
 
   def show
@@ -13,7 +11,6 @@ class InstructorsController < ApplicationController
   def new #render a signup form
     if !logged_in?
       @instructor = Instructor.new
-
     else
         redirect_to root_path
     end
@@ -35,9 +32,9 @@ class InstructorsController < ApplicationController
   def edit
     if @instructor == current_instructor
     @instructor = Instructor.find_by_id(params[:id])
-    else
-      flash[:error] = "You do not have permission to edit another instructor's profile."
-        redirect_to instructor_path(instructor)
+    # else
+    #   flash[:error] = "You do not have permission to edit another instructor's profile."
+    #     redirect_to instructor_path(@instructor)
     end
   end
 

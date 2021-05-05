@@ -1,12 +1,14 @@
 <h1>Courses#index</h1>
 <p>Find me in app/views/courses/index.html.erb</p>
 
-<br>
-<% if @courses.empty? %>
-   <h2><%= "You do not have any courses just yet." %> </h2>         
-   
-    <h2><%= "Hi" %> <%= @instructor.first_name %> <%= @instructor.last_name %> <%= "," %><h2> 
-<% elsif  %>
+<% if @instructor && @instructor.courses.empty? %>        
+    <h2><%= "Hi" %> <%= @instructor.first_name %> <%= @instructor.last_name %> <%= "!" %><h2> 
+    <h2><%= "You do not have any courses just yet." %> </h2> 
+    <br>
+    <%= link_to "Add a course", new_instructor_course_path(@instructor) %>
+    <br>
+
+<% elsif @instructor && @instructor.courses %>
   <p> <%= "This is a list of your courses." %> </p>
       <% @courses.each do |c| %>
          Language: <%= c.language %> <br>
@@ -17,11 +19,13 @@
          Day: <%= c.day %> <br>
          Start Time: <%= c.start_time %> <br>
          End Time: <%= c.end_time %> <br> 
-      <% end %>
+         <br> 
+     
       <%= link_to "Your profile", instructor_path(@instructor) %>
       <br>
       <%= link_to "Add a course", new_instructor_course_path(@instructor) %>
       <br>
+      <% end %>
 
 <% else  %>
    <p> <%= "This is a list of all courses." %> </p>
