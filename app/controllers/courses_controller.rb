@@ -1,11 +1,11 @@
 class CoursesController < ApplicationController
-  before_action :set_course, except: [:index, :new, :create]
+  # before_action :set_course, except: [:index, :new, :create]
    
   def index #responsible for showing all courses route: '/courses' path: courses_path
     if params[:instructor_id]
       @instructor = Instructor.find_by_id(params[:instructor_id])
       @courses = @instructor.courses
-      # binding.pry
+      
     else
       @courses = Course.all
     end
@@ -43,23 +43,25 @@ class CoursesController < ApplicationController
   end
 
   def show #responsible for showing single course 
-    if params[:instructor_id]
+    if params[:instructor_id] # this is checking if this a nested route
       @instructor = Instructor.find_by_id(params[:instructor_id])
-      @courses = @instructor.courses
-      # @course = Course.find_by_id(params[:id])
-    else
-      @courses = Course.all
+      @course = @instructor.courses.find_by_id(params[:id])
+    else #not in the nested route
+      @course = Course.find_by_id(params[:id])
     end
   end
 
   def edit
+    @instructor = Instructor.find_by_id(params[:instructor_id])
     @course = Course.find_by_id(params[:id])
   end
 
   def update
-    # @course = Course.find_by_id(params[:id])
+    @instructor = Instructor.find_by_id(params[:instructor_id])
+    @course = Course.find_by_id(params[:id])
     if @course.update(course_params)
-      redirect_to course_path(@course)
+     
+      redirect_to instructor_course_path(@instructor, @course)
     else
       render :edit
     end

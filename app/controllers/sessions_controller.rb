@@ -3,7 +3,9 @@ class SessionsController < ApplicationController
   def instructor_login_new #render the login form
     if logged_in?
         redirect_to instructor_path(current_instructor)
+        
     end
+
   end
 
   def instructor_login_create #process the login form

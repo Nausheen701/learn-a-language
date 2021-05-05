@@ -22,12 +22,15 @@
          Start Time: <%= c.start_time %> <br>
          End Time: <%= c.end_time %> <br> 
          <br> 
+         <%= link_to "Edit this course", edit_instructor_course_path(@instructor, c)%>
+         <br>
+      <% end %>
+
      
       <%= link_to "Your profile", instructor_path(@instructor) %>
       <br>
       <%= link_to "Add a course", new_instructor_course_path(@instructor) %>
       <br>
-      <% end %>
 
 <% else  %>
    <p> <%= "This is a list of all courses." %> </p>
@@ -42,6 +45,10 @@
          End Time: <%= c.end_time %> <br>
          <br>
       <% end %>
+
 <% end %>
 
+<%= link_to "All Polyglot Instructors", instructors_path %>
 <br>
+<br>
+<%= link_to "Log out", '/logout', method: 'destroy' %>
