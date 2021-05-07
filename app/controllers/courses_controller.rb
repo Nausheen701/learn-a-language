@@ -24,10 +24,8 @@ class CoursesController < ApplicationController
   def create #responsible for processing submitted new form route: '/courses'
    
     if params[:instructor_id]
-      
       @instructor = Instructor.find_by_id(params[:instructor_id])
       @course = @instructor.courses.build(course_params)
-      
       # @course = Course.new(course_params(:language, :level, :age_group, :class_size, :location, :day, :time))
     else 
       @course = Course.new(course_params)
@@ -35,11 +33,10 @@ class CoursesController < ApplicationController
 
     if @course.save
       # redirect_to courses_path
-      # redirect_to instructor_course_path(instructor)
+      redirect_to instructor_course_path(@instructor, @course)
     else
       render :new
     end
-
   end
 
   def show #responsible for showing single course 
@@ -54,13 +51,15 @@ class CoursesController < ApplicationController
   def edit
     @instructor = Instructor.find_by_id(params[:instructor_id])
     @course = Course.find_by_id(params[:id])
+    redirect_to instructor_course_path unless @course.instructor_id == current_instructor.id
   end
 
   def update
     @instructor = Instructor.find_by_id(params[:instructor_id])
-    @course = Course.find_by_id(params[:id])
+    if @course.instructor_id == current_instructor.id 
+      @course = Course.find_by_id(params[:id])
+    end
     if @course.update(course_params)
-     
       redirect_to instructor_course_path(@instructor, @course)
     else
       render :edit
@@ -68,10 +67,12 @@ class CoursesController < ApplicationController
   end
 
   def destroy
-    # @course = Course.find_by_id(params[:id])
+    @instructor = Instructor.find_by_id(params[:instructor_id])
+    @course = Course.find_by_id(params[:id])
     Course.find_by_id(params[:id])
     @course.destroy
-    redirect_to courses_path(current_instructor)
+    # redirect_to courses_path(current_instructor)
+    redirect_to instructor_path(current_instructor)
   end
 
 

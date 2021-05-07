@@ -1,17 +1,7 @@
 <h1>Instructor Signup</h1>
 
-<% if @instructor.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@instructor.errors.count, "error") %> prohibited this article from being saved:</h2>
+<div class="d-flex justify-content-center">
 
-    <ul>
-      <% @instructor.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-
-      <% end %>
-    </ul>
-  </div>
-<% end %>
 
 
 
@@ -34,9 +24,3 @@
     
     <%= f.submit %>
 <% end %> 
-
-<br>
-<%= link_to "Log out", '/logout', method: 'destroy' %>
-<br>
-<%= link_to "Your Courses", instructor_courses_path(@instructor) %>
-<br>

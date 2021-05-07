@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get '/signup', to: 'instructors#new'
   post '/signup', to: 'instructors#create'
-  get '/login', to: 'sessions#login'
-  post '/login', to: 'instructors#index'
-  post '/logout', to: 'sessions#destroy'
+  get '/login', to: 'sessions#instructor_login_new'
+  post '/login', to: 'sessions#instructor_login_create'
+  post '/logout', to: 'pages#home'
   get '/auth/:provider/callback', to: 'sessions#omniauth'
  
 

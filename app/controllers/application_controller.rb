@@ -10,5 +10,13 @@ class ApplicationController < ActionController::Base
 
     private 
 
-    
+    helpers do 
+        def current_instructor # return logged in user 
+         @current_instructor ||= User.find_by_id(session[:instructor_id]) #memoization
+        end 
+         # check if a user logged in
+         def logged_in?
+           !!session[:instructor_id]
+         end 
+       end  
 end

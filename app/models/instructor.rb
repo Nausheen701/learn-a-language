@@ -6,8 +6,8 @@ class Instructor < ApplicationRecord
   has_many :courses
   has_many :students, through: :courses
 
-  validates :first_name, :last_name, presence: true
-  validates :username, uniqueness: true
+  validates :first_name, :last_name, :username, :email, :password, presence: true
+  validates :username, :email, uniqueness: true
   validates :password, length: {in: 6..14} 
   
 
@@ -17,15 +17,14 @@ class Instructor < ApplicationRecord
   end
 
    # custom method 
-
+  
    def is_email?
     if !email.match(/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i)
       errors.add(:email, "Please enter a valid email.")
     end 
-
   end
 
-      # scope method that organizes couorses by their instructors 
+      # scope method that organizes courses by their instructors 
 
     # write a scope method as class method
 

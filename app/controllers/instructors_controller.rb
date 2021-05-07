@@ -1,4 +1,16 @@
 class InstructorsController < ApplicationController
+  # def new
+  #   @instructor = Instructor.new
+  # end
+
+  def new #render a signup form
+    
+    if !logged_in?
+    #   @instructor = Instructor.new
+        redirect_to signup_path
+    end
+      @instructor = Instructor.new
+  end
 
   def index
     # @instructors = Instructor.all
@@ -10,13 +22,7 @@ class InstructorsController < ApplicationController
     @instructor = Instructor.find_by_id(params[:id])
   end
 
-  def new #render a signup form
-    if !logged_in?
-      @instructor = Instructor.new
-    else
-        redirect_to root_path
-    end
-  end
+ 
 
   def create #process sign up form
     instructor = Instructor.new(instructor_params)
@@ -48,7 +54,7 @@ class InstructorsController < ApplicationController
     @instructor.save(:validate => false)
       redirect_to instructor_path(@instructor)
     # else  
-    #   render :edit
+    #   render :edit 
     # end
   end
 
@@ -61,7 +67,7 @@ class InstructorsController < ApplicationController
   private 
 
   def instructor_params
-      params.require(:instructor).permit(:first_name, :last_name, :email, :username, :password, :phone_number, :nationality, :ethnicity, :native_language, :other_languages, :instructional_languages, :date_of_birth, :education, :teaching_experience, :bio)
+      params.require(:instructor).permit(:first_name, :last_name, :username, :email, :password, :phone_number, :nationality, :ethnicity, :native_language, :other_languages, :instructional_languages, :date_of_birth, :education, :teaching_experience, :bio)
   end
 end
 

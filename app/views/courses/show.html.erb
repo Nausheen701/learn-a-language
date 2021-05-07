@@ -14,8 +14,16 @@
 <br>
 <% if @instructor %>
 <%= link_to "Edit this course", edit_instructor_course_path(@instructor) %>
+<%= link_to "Add another course", new_instructor_course_path(@instructor) %>
+      <br>
+      <br>
+<%= link_to "See all your courses", instructor_courses_path(@instructor) %>
 <% end %>
+<br>
+<br>
 
+
+<br>
 <br>
 <%= link_to 'Delete', course_path(@course), method: "delete" %>
 <br>
