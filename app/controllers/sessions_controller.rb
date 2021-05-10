@@ -48,16 +48,14 @@ class SessionsController < ApplicationController
 def omniauth 
   
   instructor = Instructor.find_or_create_by(uid: request.env['omniauth.auth'][:uid], provider: request.env['omniauth.auth'][:provider]) do |u|
-    
     u.username = request.env['omniauth.auth'][:info][:first_name]
     #  u.email = request.env['omniauth.auth'][:info][:email]
     u.password = SecureRandom.hex(15)
-    
   end 
 
   if instructor.valid?
     session[:instructor_id] = instructor.id # log them 
-    redirect_to instructor_path(instructor)
+    redirect_to instructor_path(instructor.id)
   else
     redirect_to login_path 
   end 

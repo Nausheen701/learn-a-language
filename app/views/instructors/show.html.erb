@@ -1,9 +1,9 @@
 
 
 
-<h2><%= "Hello"%> <%= @instructor.to_s%><%= ","%></h2>
 
-<h4>This is your Instructor Profile (instructor#show)</h4>
+
+<h4>This is <%= "#{@instructor.to_s}'s" %> Instructor Profile (instructor#show)</h4>
 <p> Name: <%= @instructor.first_name %> <%= @instructor.last_name %> </p> 
 <p> Username: <%= @instructor.username %> </p>
 <p> Email: <%= @instructor.email %> </p>
@@ -19,9 +19,9 @@
 <p> Bio: <%= @instructor.bio %> </p>
 
 
-<%= link_to "Edit your profile", edit_instructor_path(@instructor) %>
+<%= link_to "Edit profile", edit_instructor_path(@instructor) %>
 <br>
-<%= link_to "Your Courses", instructor_courses_path(@instructor) %>
+<%= link_to "#{@instructor.first_name} #{@instructor.last_name}'s Courses", instructor_courses_path(@instructor) %>
 <br>
 <%= link_to "All Polyglot Instructors", instructors_path %>
 <br>

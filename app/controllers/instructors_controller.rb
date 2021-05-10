@@ -36,6 +36,7 @@ class InstructorsController < ApplicationController
   end
 
   def edit
+  
     @instructor = Instructor.find_by_id(params[:id])
     if @instructor == current_instructor
     else 
@@ -54,9 +55,9 @@ class InstructorsController < ApplicationController
 
   def update
     @instructor = Instructor.find_by_id(params[:id])
-   
+    if @instructor == current_instructor
     @instructor.update(instructor_params)
-    
+    end
     # @instructor.attributes=instructor_params
     # @instructor.save(:validate => false)
       redirect_to instructor_path(@instructor)
