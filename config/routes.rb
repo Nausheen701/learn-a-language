@@ -33,7 +33,7 @@ end
 
 resources :instructors
 resources :students
-resources :courses # anything non-nested
+resources :courses  # anything non-nested
 resources :program
 
 # # show all users

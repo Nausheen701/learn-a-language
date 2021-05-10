@@ -5,7 +5,6 @@ class CoursesController < ApplicationController
     if params[:instructor_id]
       @instructor = Instructor.find_by_id(params[:instructor_id])
       @courses = @instructor.courses
-      
     else
       @courses = Course.all
     end
@@ -22,7 +21,6 @@ class CoursesController < ApplicationController
   end
 
   def create #responsible for processing submitted new form route: '/courses'
-   
     if params[:instructor_id]
       @instructor = Instructor.find_by_id(params[:instructor_id])
       @course = @instructor.courses.build(course_params)
@@ -30,10 +28,9 @@ class CoursesController < ApplicationController
     else 
       @course = Course.new(course_params)
     end
-
     if @course.save
       # redirect_to courses_path
-      redirect_to instructor_course_path(@instructor, @course)
+      redirect_to instructor_courses_path(@instructor, @course)
     else
       render :new
     end
@@ -56,8 +53,8 @@ class CoursesController < ApplicationController
 
   def update
     @instructor = Instructor.find_by_id(params[:instructor_id])
+    @course = Course.find_by_id(params[:id])
     if @course.instructor_id == current_instructor.id 
-      @course = Course.find_by_id(params[:id])
     end
     if @course.update(course_params)
       redirect_to instructor_course_path(@instructor, @course)

@@ -2,15 +2,14 @@ class Instructor < ApplicationRecord
   has_secure_password
   # .authenticate
   # reader and writers for the password
-  #  validates the prresence of password
+  #  validates the presence of password
   has_many :courses
   has_many :students, through: :courses
 
-  validates :first_name, :last_name, :username, :email, :password, presence: true
+  validates :first_name, :last_name, :username, :email, presence: true
   validates :username, :email, uniqueness: true
-  validates :password, length: {in: 6..14} 
+  validates :password, allow_nil: true, length: {in: 6..14} 
   
-
 
   def to_s
     self.first_name + " " + self.last_name

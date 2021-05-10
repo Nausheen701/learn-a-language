@@ -22,8 +22,6 @@ class InstructorsController < ApplicationController
     @instructor = Instructor.find_by_id(params[:id])
   end
 
- 
-
   def create #process sign up form
     instructor = Instructor.new(instructor_params)
     if instructor.save
@@ -33,31 +31,36 @@ class InstructorsController < ApplicationController
     else 
       # show some errors
       # make them try again
-      render :new
+      redirect_to root_path
     end
   end
 
   def edit
-    if @instructor == current_instructor
     @instructor = Instructor.find_by_id(params[:id])
-    # else
-    #   flash[:error] = "You do not have permission to edit another instructor's profile."
-    #     redirect_to instructor_path(@instructor)
+    if @instructor == current_instructor
+    else 
+        redirect_to instructor_path(current_instructor)
     end
   end
 
+  # def update
+  #   @instructor = Instructor.find_by_id(params[:id])
+  #   if @instructor == current_instructor.id 
+  #     @instructor.update(instructor_params)
+  #   else
+  #     render :edit
+  #   end
+  # end
+
   def update
     @instructor = Instructor.find_by_id(params[:id])
-    # @instructor.update(instructor_params)
-    @instructor.attributes=instructor_params
-
-    @instructor.save(:validate => false)
+   
+    @instructor.update(instructor_params)
+    
+    # @instructor.attributes=instructor_params
+    # @instructor.save(:validate => false)
       redirect_to instructor_path(@instructor)
-    # else  
-    #   render :edit 
-    # end
   end
-
 
   def delete
     session.delete :instructor_id
