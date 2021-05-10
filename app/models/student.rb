@@ -23,7 +23,7 @@ class Student < ApplicationRecord
     if !email.match(/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i)
       errors.add(:email, "Please enter a valid email.")
     end 
+   end
 
-end
-
+   scope :alpha, -> {order('last_name')}
 end

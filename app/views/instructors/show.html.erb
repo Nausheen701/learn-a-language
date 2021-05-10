@@ -1,8 +1,4 @@
 
-
-
-
-
 <h4>This is <%= "#{@instructor.to_s}'s" %> Instructor Profile (instructor#show)</h4>
 <p> Name: <%= @instructor.first_name %> <%= @instructor.last_name %> </p> 
 <p> Username: <%= @instructor.username %> </p>
@@ -24,6 +20,10 @@
 <%= link_to "#{@instructor.first_name} #{@instructor.last_name}'s Courses", instructor_courses_path(@instructor) %>
 <br>
 <%= link_to "All Polyglot Instructors", instructors_path %>
+<br>
+<%= link_to "All Polyglot Students", students_path %>
+<br>
+<%= link_to "All Polyglot Courses", courses_path %>
 <br>
 <%= link_to "Log out", '/logout', method: 'destroy' %>
 

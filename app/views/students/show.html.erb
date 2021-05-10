@@ -1,9 +1,7 @@
 <h1>Students#show</h1>
 <p>Find me in app/views/students/show.html.erb</p>
 
-<h2><%= "Hello"%> <%= @student.to_s%><%= ","%></h2>
-
-<h4>This is your Student Profile (student#show)</h4>
+<h4>This is <%= "#{@student.to_s}'s" %> Student Profile (student#show)</h4>
 <p> Name: <%= @student.first_name %>  <%= @student.last_name %> </p> 
 <p> DOB: <%= @student.date_of_birth %> </p>
 <p> Email: <%= @student.email %> </p>
@@ -16,6 +14,14 @@
 <p> Bio: <%= @student.bio %> </p>
 
 
-<%= link_to "Complete your profile", edit_student_path(@student) %>
+<%= link_to "Edit profile", edit_student_path(@student) %>
+<br>
+<%= link_to "#{@student.first_name} #{@student.last_name}'s Courses", student_path(@student) %>
+<br>
+<%= link_to "All Polyglot Students", students_path %>
+<br>
+<%= link_to "All Polyglot Instructors", instructors_path %>
+<br>
+<%= link_to "All Polyglot Courses", courses_path %>
 <br>
 <%= link_to "Log out", '/logout', method: 'destroy' %>

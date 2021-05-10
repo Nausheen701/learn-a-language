@@ -36,7 +36,7 @@ class Instructor < ApplicationRecord
     # scope :orgs_donations, -> {joins(:donations).group('organizations.name')}
         
     # alphabetize the list of instructors
-    scope :alpha, -> {order('username')}
+    scope :alpha, -> {order('last_name')}
 
   # reload! => reload console with updated code
 end

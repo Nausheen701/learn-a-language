@@ -4,9 +4,12 @@
 
 <% @instructors.each do |instructor| %>
     <p>
-    <%= link_to instructor.username, instructor_path(instructor) %>
+    <%= link_to "#{instructor.first_name} #{instructor.last_name}", instructor_path(instructor) %>
+   
     </p>
     <% end %>
 
     <br>
 <%= link_to "Log out", '/logout', method: 'destroy' %>
+
+

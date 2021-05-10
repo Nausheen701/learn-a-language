@@ -14,6 +14,7 @@
 <% elsif @instructor && @instructor.courses %>
   <p> <%= "This is a list of your courses." %> </p>
       <% @courses.each do |c| %>
+         Language: <%= c.instructor.first_name %> <br>
          Language: <%= c.language %> <br>
          Level: <%= c.level %> <br>
          Age Group: <%= c.age_group %> <br>
@@ -37,6 +38,7 @@
 <% else  %>
    <p> <%= "This is a list of all courses." %> </p>
       <% @courses.each do |c| %>
+         Instructor: <%= c.instructor_id%> <br>
          Language: <%= c.language %> <br>
          Level: <%= c.level %> <br>
          Age Group: <%= c.age_group %> <br>
