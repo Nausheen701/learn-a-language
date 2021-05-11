@@ -46,9 +46,13 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    @instructor = Instructor.find_by_id(params[:instructor_id])
-    @course = Course.find_by_id(params[:id])
+    if params[:instructor_id]
+      @instructor = Instructor.find_by_id(params[:instructor_id])
+      @course = Course.find_by_id(params[:id])
     redirect_to instructor_course_path unless @course.instructor_id == current_instructor.id
+    else 
+      redirect_to course_path
+    end
   end
 
   def update

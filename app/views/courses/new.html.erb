@@ -1,42 +1,6 @@
 <h1>Courses#new</h1>
 <p>Find me in app/views/courses/new.html.erb</p>
 
-<h3>Form With</h3>
+<h3>Create a new course</h3>
 
-<%= form_with model: [@instructor, @course] do |f| %>
-<% if @instructor %>
-    <%= f.hidden_field :instructor_id, value: @instructor.id %>
-<% end %>
-
-    <%=  f.label "language" %>
-    <%=  f.text_field :language %>
-    <br>
-    <%=  f.label "level" %>
-    <%=  f.text_field :level %>
-    <br>
-    <%=  f.label "age group" %>
-    <%=  f.text_field :age_group %>
-    <br>
-    <%=  f.label "class size" %>
-    <%=  f.text_field :class_size %>
-    <br>
-    <%=  f.label "location" %>
-    <%=  f.text_field :location %>
-    <br>
-    <%=  f.label "days" %>
-    <%=  f.text_field :day %>
-    <br>
-    <%=  f.label "start time" %>
-    <%=  f.time_field :start_time %>
-    <br>
-    <%=  f.label "end time" %>
-    <%=  f.time_field :end_time %>
-    <br>
-    <%= f.submit %>
-<% end%>
-
-<br>
-<%= link_to "Your Courses", instructor_courses_path(@instructor) %>
-<br>
-<%= link_to "All Polyglot Instructors", instructors_path %>
-<br>
+<%= render partial: "form" %>
