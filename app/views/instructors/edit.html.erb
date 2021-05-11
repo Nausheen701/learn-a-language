@@ -1,60 +1,38 @@
 <h1>Instructors#edit</h1>
 <p>Find me in app/views/instructors/edit.html.erb</p>
 
-<%= form_with model: @instructor do |f| %>
+<%= form_with model: @instructor do |f| %><br>
+    <%= f.label "date_of_birth"%> <br>
+    <%= f.date_field :date_of_birth%><br>
     <br>
-    <%= f.label "date_of_birth"%>
+    <%= f.label "phone number"%><br>
+    <%= f.text_field :phone_number%><br>
     <br>
-    <%= f.date_field :date_of_birth%>
+    <%= f.label "nationality" %><br>
+    <%= f.text_field :nationality %><br>
     <br>
+    <%= f.label "ethnicity" %><br>
+    <%= f.text_field :ethnicity %><br>
     <br>
-    <%= f.label "phone number"%>
+    <%= f.label "education" %><br>
+    <%= f.text_area :education %><br>
     <br>
-    <%= f.text_field :phone_number%>
+    <%= f.label "My teaching experience" %><br>
+    <%= f.text_area :teaching_experience %><br>
     <br>
+    <%= f.label "My native language" %><br>
+    <%= f.text_field :native_language %><br>
     <br>
-    <%= f.label "nationality" %>
+    <%= f.label "Other languages I speak fluently" %><br>
+    <%= f.text_field :other_languages %><br>
     <br>
-    <%= f.text_field :nationality %>
+    <%= f.label "Language(s) I teach" %><br>
+    <%= f.text_field :instructional_languages %><br>
     <br>
-    <br>
-    <%= f.label "ethnicity" %>
-    <br>
-    <%= f.text_field :ethnicity %>
-    <br>
-    <br>
-    <%= f.label "education" %>
-    <br>
-    <%= f.text_area :education %>
-    <br>
-    <br>
-    <%= f.label "My teaching experience" %>
-    <br>
-    <%= f.text_area :teaching_experience %>
-    <br>
-    <br>
-    <%= f.label "My native language" %>
-    <br>
-    <%= f.text_field :native_language %>
-    <br>
-    <br>
-    <%= f.label "Other languages I speak fluently" %>
-    <br>
-    <%= f.text_field :other_languages %>
-    <br>
-    <br>
-    <%= f.label "Language(s) I teach" %>
-    <br>
-    <%= f.text_field :instructional_languages %>
-    <br>
-    <br>
-    <%= f.label "A little bit about my education and teaching experience" %>
-    <br>
-    <%= f.text_area :bio %>
-    <br>
+    <%= f.label "A little bit about my education and teaching experience" %><br>
+    <%= f.text_area :bio %><br>
     <br>
     <%= f.submit %>
-
 <% end %> 
 <br>
 <%= link_to "Log out", '/logout', method: 'destroy' %>

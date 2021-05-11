@@ -4,7 +4,8 @@
 
 <% @instructors.each do |instructor| %>
     <p>
-    <%= link_to "#{instructor.first_name} #{instructor.last_name}", instructor_path(instructor) %>
+    
+    <%= link_to "#{instructor.to_s}", instructor_path(instructor) %>
    
     </p>
     <% end %>

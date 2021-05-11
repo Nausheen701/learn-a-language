@@ -1,28 +1,22 @@
 <h1>Courses#show</h1>
 <p>Find me in app/views/courses/show.html.erb</p>
-
     
-    <%= @course.language %>
-    <%= @course.level %>
-    <%= @course.age_group %>
-    <%= @course.class_size %>
-    <%= @course.location %>
-    <%= @course.day %>
-    <%= @course.start_time %>
-    <%= @course.end_time %>
+  
 
+    Language: <%= @course.language %><br>
+    Level: <%= @course.level %><br>
+    Age group: <%= @course.age_group %><br>
+    Class Size: <%= @course.class_size %><br>
+    Location: <%= @course.location %><br>
+    Days: <%= @course.day %><br>
+    Start time: <%= @course.start_time %><br>
+    End time: <%= @course.end_time %><br>
 <br>
 <% if @instructor %>
-<%= link_to "Edit this course", edit_instructor_course_path(@instructor) %>
-<%= link_to "Add another course", new_instructor_course_path(@instructor) %>
-      <br>
-      <br>
+<%= link_to "Edit this course", edit_instructor_course_path(@instructor) %><br>
+<%= link_to "Add another course", new_instructor_course_path(@instructor) %><br>
 <%= link_to "See all your courses", instructor_courses_path(@instructor) %>
 <% end %>
-<br>
-<br>
-
-
 <br>
 <br>
 <%= link_to 'Delete', course_path(@course), method: "delete" %>

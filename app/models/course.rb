@@ -1,6 +1,7 @@
 class Course < ApplicationRecord
    belongs_to :instructor, optional: true
    belongs_to :student, optional: true
+   validates :language, :level, presence: true
    
 
     # what can go in here?

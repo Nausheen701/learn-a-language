@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  # before_action :set_course, except: [:index, :new, :create]
+  before_action :set_course, except: [:index, :new, :create, :show, :edit]
    
   def index #responsible for showing all courses route: '/courses' path: courses_path
     if params[:instructor_id]
@@ -56,7 +56,7 @@ class CoursesController < ApplicationController
   end
 
   def update
-    @instructor = Instructor.find_by_id(params[:instructor_id])
+    # @instructor = Instructor.find_by_id(params[:instructor_id])
     @course = Course.find_by_id(params[:id])
     if @course.instructor_id == current_instructor.id 
     end
@@ -68,7 +68,7 @@ class CoursesController < ApplicationController
   end
 
   def destroy
-    @instructor = Instructor.find_by_id(params[:instructor_id])
+    # @instructor = Instructor.find_by_id(params[:instructor_id])
     @course = Course.find_by_id(params[:id])
     Course.find_by_id(params[:id])
     @course.destroy
@@ -77,11 +77,15 @@ class CoursesController < ApplicationController
   end
 
 
-  # private
+  private
 
   def course_params #strong params: permits fields being submitted
     params.require(:course).permit(:language, :level, :age_group, :class_size, :location, :day, :start_time, :end_time)
   end
 
+  def set_course
+    @instructor = Instructor.find_by_id(params[:instructor_id])
+  end
 
+  
 end

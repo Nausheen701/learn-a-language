@@ -2,60 +2,21 @@
 <p>Find me in app/views/courses/index.html.erb</p>
 
 <% if @instructor && @instructor.courses.empty? %>        
-    <h2><%= "This is a list of" %> <%= @instructor.first_name %> <%= @instructor.last_name%><%="'s courses." %><h2> 
-    <h2><%= "There are no courses just yet." %> </h2> 
-    <br>
-    <%= link_to "Add a course", new_instructor_course_path(@instructor) %>
-    <br>
-    <%= link_to "#{@instructor.first_name} #{@instructor.last_name}'s profile", instructor_path(@instructor) %>
-    <br>
+    <p><%= "This is a list of" %> <%= @instructor.first_name %> <%= @instructor.last_name%><%="'s courses." %></p> 
+    <h2><%= "There are no courses just yet." %> </h2> <br>
+    <%= link_to "Add a course", new_instructor_course_path(@instructor) %><br>
+    <%= link_to "#{@instructor.first_name} #{@instructor.last_name}'s profile", instructor_path(@instructor) %><br>
 
+    <% elsif @instructor && @instructor.courses %>
+   <p><%= "This is a list of" %> <%= @instructor.first_name %> <%= @instructor.last_name%><%="'s courses." %></p> 
+   <%= render partial: "course_attributes" %> 
+   <%= link_to "Your profile", instructor_path(@instructor) %><br>
+   <%= link_to "Add a course", new_instructor_course_path(@instructor) %><br>
 
-<% elsif @instructor && @instructor.courses %>
-  <p> <%= "This is a list of your courses." %> </p>
-      <% @courses.each do |c| %>
-         Language: <%= c.instructor.first_name %> <br>
-         Language: <%= c.language %> <br>
-         Level: <%= c.level %> <br>
-         Age Group: <%= c.age_group %> <br>
-         Class Size: <%= c.class_size %> <br>
-         Location: <%= c.location %> <br>
-         Day: <%= c.day %> <br>
-         Start Time: <%= c.start_time %> <br>
-         End Time: <%= c.end_time %> <br> 
-         <br> 
-         <%= link_to "Edit this course", edit_instructor_course_path(@instructor, c)%>
-         <br>
-         
-      <% end %>
-
-     
-      <%= link_to "Your profile", instructor_path(@instructor) %>
-      <br>
-      <%= link_to "Add a course", new_instructor_course_path(@instructor) %>
-      <br>
-
-<% else  %>
-   <p> <%= "This is a list of all courses." %> </p>
-      <% @courses.each do |c| %>
-         Instructor: <%= c.instructor_id%> <br>
-         Language: <%= c.language %> <br>
-         Level: <%= c.level %> <br>
-         Age Group: <%= c.age_group %> <br>
-         Class Size: <%= c.class_size %> <br>
-         Location: <%= c.location %> <br>
-         Day: <%= c.day %> <br>
-         Start Time: <%= c.start_time %> <br>
-         End Time: <%= c.end_time %> <br>
-         <br>
-         <%= link_to "Edit this course", edit_course_path(c)%>
-         <br>
-         <br>
-      <% end %>
-
+   <% else  %>
+   <p> <%= "This is a list of all Polyglot courses." %> </p>
+   <%= render partial: "course_attributes" %>
 <% end %>
 
-<br>
-<%= link_to "All Polyglot Instructors", instructors_path %>
-<br>
+<%= link_to "All Polyglot Instructors", instructors_path %><br>
 <%= link_to "Log out", '/logout', method: 'destroy' %>

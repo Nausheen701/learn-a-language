@@ -13,9 +13,10 @@
 <p> Other Languages: <%= @student.other_languages%> </p>
 <p> Bio: <%= @student.bio %> </p>
 
+<% if @student %>  
+<%= link_to "Edit profile", edit_student_path(@student) %><br>
+<% end %>
 
-<%= link_to "Edit profile", edit_student_path(@student) %>
-<br>
 <%= link_to "#{@student.first_name} #{@student.last_name}'s Courses", student_path(@student) %>
 <br>
 <%= link_to "All Polyglot Students", students_path %>
