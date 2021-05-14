@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+# README
+Clone the repository at https://github.com/Nausheen701/learn-a-language. Then run bundle install and you will be ready to go.
