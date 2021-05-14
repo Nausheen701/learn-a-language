@@ -6,7 +6,6 @@ class InstructorsController < ApplicationController
 
   def new #render a signup form
     if !logged_in?
-    #   @instructor = Instructor.new
         redirect_to signup_path
     end
       @instructor = Instructor.new
@@ -29,9 +28,6 @@ class InstructorsController < ApplicationController
       session[:instructor_id] = instructor.id
       redirect_to instructor_path(instructor) #takes them to welcome page
     else 
-      # show some errors
-      # make them try again
-      # redirect_to root_path
       render :new
     end
   end
@@ -43,15 +39,6 @@ class InstructorsController < ApplicationController
         redirect_to instructor_path(current_instructor)
     end
   end
-
-  # def update
-  #   @instructor = Instructor.find_by_id(params[:id])
-  #   if @instructor == current_instructor.id 
-  #     @instructor.update(instructor_params)
-  #   else
-  #     render :edit
-  #   end
-  # end
 
   def update
     # @instructor = Instructor.find_by_id(params[:id])

@@ -30,9 +30,6 @@ class StudentsController < ApplicationController
       session[:student_id] = student.id
       redirect_to student_path(student) #takes them to welcome page
     else 
-      # show some errors
-      # make them try again
-      # redirect_to root_path
       render :new
     end
   end
@@ -44,23 +41,6 @@ class StudentsController < ApplicationController
         redirect_to student_path(current_student)
     end
   end
-
-  # def edit
-  #   # @student = Student.find_by_id(params[:id])
-  #   if @student == current_student
-  #   else 
-  #       redirect_to student_path(current_student)
-  #   end
-  # end
-
-  # def update
-  #   @instructor = Instructor.find_by_id(params[:id])
-  #   if @instructor == current_instructor.id 
-  #     @instructor.update(instructor_params)
-  #   else
-  #     render :edit
-  #   end
-  # end
 
   def update
     # @student = Student.find_by_id(params[:id])

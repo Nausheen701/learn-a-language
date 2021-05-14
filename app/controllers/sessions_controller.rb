@@ -16,7 +16,6 @@ class SessionsController < ApplicationController
     end
   end
 
-
   def instructor_login_destroy #logout 
     # delete sessions hash
     session.delete :instructor_id
@@ -60,30 +59,5 @@ def omniauth
     redirect_to login_path 
   end 
 end
-# def instructor_omniauth 
-#   instructor = Instructor.find_or_create_by(uid: request.env['instructor_omniauth.auth'][:uid], provider: request.env['instructor_omniauth.auth'][:provider]) do |u|
-#     u.username = request.env['instructor_omniauth.auth'][:info][:first_name]
-#     u.email = request.env['instructor_omniauth.auth'][:info][:email]
-#     u.password = SecureRandom.hex(15)
-#   end 
-#   if instructor.valid?
-#     session[:instructor_id] = instructor.id # log them 
-#     redirect_to root_path
-#   else
-#     redirect_to login_path 
-#   end 
-
-#   def student_omniauth 
-#     student = Instructor.find_or_create_by(uid: request.env['student_omniauth.auth'][:uid], provider: request.env['student_omniauth.auth'][:provider]) do |u|
-#       u.username = request.env['student_omniauth.auth'][:info][:first_name]
-#       u.email = request.env['student_omniauth.auth'][:info][:email]
-#       u.password = SecureRandom.hex(15)
-#     end 
-#     if student.valid?
-#       session[:student_id] = student.id # log them 
-#       redirect_to root_path
-#     else
-#       redirect_to login_path 
-#     end 
 
 end

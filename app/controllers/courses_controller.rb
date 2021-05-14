@@ -24,12 +24,10 @@ class CoursesController < ApplicationController
     if params[:instructor_id]
       @instructor = Instructor.find_by_id(params[:instructor_id])
       @course = @instructor.courses.build(course_params)
-      # @course = Course.new(course_params(:language, :level, :age_group, :class_size, :location, :day, :time))
     else 
       @course = Course.new(course_params)
     end
     if @course.save
-      # redirect_to courses_path
       redirect_to instructor_courses_path(@instructor, @course)
     else
       render :new
@@ -72,7 +70,6 @@ class CoursesController < ApplicationController
     @course = Course.find_by_id(params[:id])
     Course.find_by_id(params[:id])
     @course.destroy
-    # redirect_to courses_path(current_instructor)
     redirect_to instructor_path(current_instructor)
   end
 

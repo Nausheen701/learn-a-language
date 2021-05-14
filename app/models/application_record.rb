@@ -5,7 +5,7 @@ end
 
 
 
-# what activerecord methods?
+# what are activerecord methods?
 
 #  query users table to treturn a user with an 
   # User.find_by_(id: 1)
