@@ -25,4 +25,6 @@ class Course < ApplicationRecord
             # let item know about this student object
     end 
 
+    
+
 end

@@ -4,10 +4,14 @@
 
 <% @instructors.each do |instructor| %>
     <p>
-    
     <%= link_to "#{instructor.to_s}", instructor_path(instructor) %>
    
+    <% instructor.courses.each do |course| %>
+        <li> <%= course.language %> - <%= course.level %></li>
+        <% end %>
+   
     </p>
+
     <% end %>
 
     <br>
