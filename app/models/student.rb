@@ -7,7 +7,7 @@ class Student < ApplicationRecord
   # where does validate come from? activerecord
   validates :first_name, :last_name, presence: true
   validates :username, uniqueness: true
-  validates :password, length: { in: 6..14}
+  validates :password, length: { in: 6..16}
 
 
   def to_s

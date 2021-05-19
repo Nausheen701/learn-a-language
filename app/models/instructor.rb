@@ -6,9 +6,9 @@ class Instructor < ApplicationRecord
   has_many :courses
   has_many :students, through: :courses
 
-  validates :first_name, :last_name, :username, :email, presence: true
-  validates :username, :email, uniqueness: true
-  validates :password, allow_nil: true, length: {in: 6..14} 
+  validates :first_name, :username, presence: true
+  validates :username, :last_name, uniqueness: true
+  validates :password, allow_nil: true, length: {in: 6..20} 
   
 
   def to_s
