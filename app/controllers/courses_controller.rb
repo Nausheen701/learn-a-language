@@ -1,7 +1,6 @@
 class CoursesController < ApplicationController
-  before_action :set_course, except: [:index, :new, :create, :show, :edit]
    
-  def index #responsible for showing all courses route: '/courses' path: courses_path
+  def index 
     if params[:instructor_id]
       @instructor = Instructor.find_by_id(params[:instructor_id])
       @courses = @instructor.courses
@@ -10,7 +9,7 @@ class CoursesController < ApplicationController
     end
   end
 
-  def new #responsibile for rendering a new form route: 'courses/new' path: new_course_path
+  def new 
     if params[:instructor_id] 
       @instructor = Instructor.find_by_id(params[:instructor_id])
     end
@@ -18,19 +17,16 @@ class CoursesController < ApplicationController
       @course = @instructor.courses.build
      else
        redirect_to instructors_path
-      # @course = Course.new
-      # @course.build_instructor #creates an empty associated object
     end
   end
 
-  def create #responsible for processing submitted new form route: '/courses'
+  def create 
     if params[:instructor_id]
       @instructor = Instructor.find_by_id(params[:instructor_id])
       @course = @instructor.courses.build(course_params)
     else 
        @course = Course.new(course_params)
      end
-
     if @course.save
       redirect_to instructor_courses_path(@instructor, @course)
     else
@@ -38,41 +34,35 @@ class CoursesController < ApplicationController
     end
   end
 
-  def show #responsible for showing single course 
-    if params[:instructor_id] # this is checking if this a nested route
+  def show 
+    if params[:instructor_id] 
       @instructor = Instructor.find_by_id(params[:instructor_id])
-      @course = @instructor.courses.find_by_id(params[:id])
-    else #not in the nested route
+    else 
       @course = Course.find_by_id(params[:id])
     end
+     
   end
 
   def edit
-    # if params[:instructor_id]
-    #    @instructor = Instructor.find_by_id(params[:instructor_id])
-      @course = Course.find_by_id(params[:id])
+    @course = Course.find_by_id(params[:id])
     redirect_to instructor_path(current_instructor) unless @course.instructor_id == current_instructor.id
-    # else
-    #   redirect_to course_path
-    # end
   end
 
-  def update
-    # @instructor = Instructor.find_by_id(params[:instructor_id])
-    @course = Course.find_by_id(params[:id])
-    if @course.instructor_id == current_instructor.id 
+
+    def update
+      @instructor = Instructor.find_by_id(params[:instructor_id])
+      @course = Course.find_by_id(params[:id])
+      if @course.update(course_params)
+        redirect_to course_path(@course)
+      else  
+        render :edit
+      end
     end
-    if @course.update(course_params)
-      redirect_to instructor_course_path(@instructor, @course)
-    else
-      render :edit
-    end
-  end
+
 
   def destroy
-    # @instructor = Instructor.find_by_id(params[:instructor_id])
+    @instructor = Instructor.find_by_id(params[:instructor_id])
     @course = Course.find_by_id(params[:id])
-    Course.find_by_id(params[:id])
     @course.destroy
     redirect_to instructor_path(current_instructor)
   end
@@ -80,7 +70,7 @@ class CoursesController < ApplicationController
 
   private
 
-  def course_params #strong params: permits fields being submitted
+  def course_params 
     params.require(:course).permit(:language, :level, :age_group, :class_size, :location, :day, :start_time, :end_time)
   end
 
@@ -88,5 +78,5 @@ class CoursesController < ApplicationController
     @instructor = Instructor.find_by_id(params[:instructor_id])
   end
 
-  
+
 end

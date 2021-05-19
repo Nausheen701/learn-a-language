@@ -1,14 +1,12 @@
 class InstructorsController < ApplicationController
-  before_action :set_instructor, except: [:new, :index, :create, :delete]
- 
+  before_action :set_instructor, only: [:edit, :update]
 
-  def new #render a signup form
+  def new 
     if logged_in?
-      redirect_to login_path
+      redirect_to instructors_path(@instructor)  
     else
-      @instructor = Instructor.new 
+      @instructor = Instructor.new   
     end
-      
   end
 
   def index
@@ -19,13 +17,12 @@ class InstructorsController < ApplicationController
   end
 
   def show
-    # @instructor = Instructor.find_by_id(params[:id])
+    @instructor = Instructor.find_by_id(params[:id])
   end
 
-  def create #process sign up form
+  def create
     @instructor = Instructor.new(instructor_params)
     if @instructor.save
-      # log user in
       session[:instructor_id] = @instructor.id
       redirect_to instructor_path(@instructor) 
     else 
@@ -48,14 +45,8 @@ class InstructorsController < ApplicationController
     end
     # @instructor.attributes=instructor_params
     # @instructor.save(:validate => false)
-       redirect_to instructor_path
+       redirect_to instructor_path(@instructor)
   end
-
-
-  # def delete
-  #   session.delete :instructor_id
-  #   redirect_to "root_path"
-  # end
 
   private 
 
