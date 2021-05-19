@@ -1,6 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: [:edit, :update]
-
+  before_action :set_student, only: [:show, :edit, :update]
 
   def new 
     if logged_in?

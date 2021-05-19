@@ -1,4 +1,5 @@
-<%= form_with model: [@instructor, @course] do |f| %>
+
+<%= form_with model: @course do |f| %>
     <% if @instructor %>
         <%= f.hidden_field :instructor_id, value: @instructor.id %>
     <% end %>
@@ -27,6 +28,9 @@
         <%=  f.label "end time" %>
         <%=  f.time_field :end_time %>
         <br>
+        <%=  f.label "student(s)" %>
+        <%=  f.select :student_id, Student.all.collect { |s| [ s.first_name, s.last_name] } %>
+
         <%= f.submit %>
     <% end%>
     

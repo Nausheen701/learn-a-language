@@ -22,12 +22,14 @@
 
 10.times do
     
-    Instructor.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, username: Faker::Name.name, password:"123")
+    Instructor.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, username: Faker::Name.name, password:"123456")
 end
 
-# 10.times do
-#     Student.create(username: Faker::Name)
-# end
+20.times do
+    
+    Student.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, username: Faker::Name.name, password:"123456")
+end
+
 
 # 10.times do
 #     Course.create(language: Faker::Language)

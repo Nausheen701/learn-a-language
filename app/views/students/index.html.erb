@@ -3,11 +3,15 @@
 
 <% @students.each do |student| %>
   <p>
+  <%= student.id %>-
   <%= link_to "#{student.to_s}", student_path(student) %>
  
+  <% student.courses.each do |course| %>
+    <li> <%= course.language %> - <%= course.level %></li>
+    <% end %>
+
   </p>
   <% end %>
 
   <br>
 <%= link_to "Log out", '/logout', method: 'destroy' %>
-

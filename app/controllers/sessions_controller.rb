@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   
   def instructor_login_new 
     if !!logged_in?
-      @instructor = Instructor.find_by_id(params[:instructor_id]) #worked once and then stopped
+      @instructor = Instructor.find_by_id(params[:instructor_id]) 
       redirect_to instructor_path(@instructor)
     end
   end
