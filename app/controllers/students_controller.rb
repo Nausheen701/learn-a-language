@@ -1,61 +1,46 @@
 class StudentsController < ApplicationController
-  before_action :set_student, except: [:new, :index, :create, :delete]
-    # def new
-  #   @instructor = Instructor.new
-  # end
+  before_action :set_student, only: [:edit, :update]
 
-  def new #render a signup form
-    
-    if !logged_in?
-    #   @instructor = Instructor.new
-        redirect_to signup_path
+
+  def new 
+    if logged_in?
+       redirect_to student_path(current_student)  
+    else
+      @student = Student.new   
     end
-      @student = Student.new
   end
 
   def index
-    # @instructors = Instructor.all
-    # @instructors = Instructor.ins_courses
     @students = Student.alpha
   end
 
   def show
-    # @student = Student.find_by_id(params[:id])
   end
 
-  def create #process sign up form
-    student = Student.new(student_params)
+  def create 
+    @student = Student.new(student_params)
     if student.save
-      # log user in
       session[:student_id] = student.id
-      redirect_to student_path(student) #takes them to welcome page
+      redirect_to student_path(@student)
     else 
       render :new
     end
   end
 
   def edit
-    #  @student = Student.find_by_id(params[:id])
-    if @student == current_student
-    else 
-        redirect_to student_path(current_student)
+    if @student != current_student 
+      redirect_to student_path(current_student)
     end
   end
 
   def update
-    # @student = Student.find_by_id(params[:id])
     if @student == current_student
     @student.update(student_params)
     else 
-    # @instructor.attributes=instructor_params
-    # @instructor.save(:validate => false)
+    # @student.attributes=student_params
+    # @student.save(:validate => false)
       redirect_to student_path(@student)
     end
-  end
-
-  def delete
-    session.delete :student_id
-    redirect_to "root_path"
   end
 
    

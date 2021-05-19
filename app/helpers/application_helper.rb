@@ -4,7 +4,7 @@ module ApplicationHelper
     end
 
     def logged_in?
-        current_instructor
+        !!session[:instructor_id]
     end
 
 end

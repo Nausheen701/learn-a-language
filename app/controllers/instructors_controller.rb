@@ -3,7 +3,7 @@ class InstructorsController < ApplicationController
 
   def new 
     if logged_in?
-      redirect_to instructors_path(@instructor)  
+       redirect_to instructor_path(current_instructor)  
     else
       @instructor = Instructor.new   
     end
@@ -32,9 +32,8 @@ class InstructorsController < ApplicationController
 
   def edit
     # @instructor = Instructor.find_by_id(params[:id])
-    if @instructor == current_instructor
-    else 
-        redirect_to instructor_path(current_instructor)
+    if @instructor != current_instructor 
+      redirect_to instructor_path(current_instructor)
     end
   end
 
@@ -47,6 +46,7 @@ class InstructorsController < ApplicationController
     # @instructor.save(:validate => false)
        redirect_to instructor_path(@instructor)
   end
+
 
   private 
 
