@@ -11,12 +11,15 @@ class CoursesController < ApplicationController
   end
 
   def new #responsibile for rendering a new form route: 'courses/new' path: new_course_path
-    if params[:instructor_id]
+    if params[:instructor_id] 
       @instructor = Instructor.find_by_id(params[:instructor_id])
+    end
+    if @instructor == current_instructor
       @course = @instructor.courses.build
-    else
-      @course = Course.new
-      @course.build_instructor #creates an empty associated object
+     else
+       redirect_to instructors_path
+      # @course = Course.new
+      # @course.build_instructor #creates an empty associated object
     end
   end
 
@@ -25,8 +28,9 @@ class CoursesController < ApplicationController
       @instructor = Instructor.find_by_id(params[:instructor_id])
       @course = @instructor.courses.build(course_params)
     else 
-      @course = Course.new(course_params)
-    end
+       @course = Course.new(course_params)
+     end
+
     if @course.save
       redirect_to instructor_courses_path(@instructor, @course)
     else
@@ -44,13 +48,13 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    if params[:instructor_id]
-      @instructor = Instructor.find_by_id(params[:instructor_id])
+    # if params[:instructor_id]
+    #    @instructor = Instructor.find_by_id(params[:instructor_id])
       @course = Course.find_by_id(params[:id])
-    redirect_to instructor_course_path unless @course.instructor_id == current_instructor.id
-    else 
-      redirect_to course_path
-    end
+    redirect_to instructor_path(current_instructor) unless @course.instructor_id == current_instructor.id
+    # else
+    #   redirect_to course_path
+    # end
   end
 
   def update

@@ -2,13 +2,15 @@
       <% @courses.each do |c| %>
          Language: <%= c.language %> <br>
          Level: <%= c.level %> <br>
+         Instructor: <%= c.instructor_id %>  <br>
          Age Group: <%= c.age_group %> <br>
          Class Size: <%= c.class_size %> <br>
          Location: <%= c.location %> <br>
          Days: <%= c.day %> <br>
          Start Time: <%= c.start_time %> <br>
          End Time: <%= c.end_time %> <br> 
-        
+    
+
          <% if @instructor && @instructor.courses %>
          <%= link_to "Edit this course", edit_instructor_course_path(@instructor, c)%><br><br>
          <% else %>
