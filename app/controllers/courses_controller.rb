@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
-   
+  # before_action :set_students, only: [:new, :create, :edit, :update]
+
   def index 
     if params[:instructor_id]
       @instructor = Instructor.find_by_id(params[:instructor_id])
@@ -11,7 +12,7 @@ class CoursesController < ApplicationController
 
   def new 
     if params[:instructor_id] && @instructor = Instructor.find_by_id(params[:instructor_id])
-    # end
+    
       if @instructor == current_instructor
         @course = @instructor.courses.build
       end
@@ -69,7 +70,11 @@ class CoursesController < ApplicationController
   private
 
   def course_params 
-    params.require(:course).permit(:language, :level, :age_group, :class_size, :location, :day, :start_time, :end_time)
+    params.require(:course).permit(:language, :level, :age_group, :class_size, :location, :day, :start_time, :end_time, :instructor_id, :student_id)
+  end
+
+  def set_students
+    @students = Student.all
   end
 
 end
