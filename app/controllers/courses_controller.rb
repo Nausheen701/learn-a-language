@@ -1,8 +1,7 @@
 class CoursesController < ApplicationController
-  # before_action :set_students, only: [:new, :create, :edit, :update]
 
   def index 
-    if params[:instructor_id] && @instructor = Instructor.find_by_id(params[:instructor_id])
+    if params[:instructor_id] && @instructor = Instructor.find_by_id(params[:instructor_id]) 
       @courses = @instructor.courses
     else
       @courses = Course.all
@@ -10,6 +9,7 @@ class CoursesController < ApplicationController
   end
 
   def new 
+    @students = Student.all
     if params[:instructor_id] && @instructor = Instructor.find_by_id(params[:instructor_id]) 
         @course = @instructor.courses.build
     else
@@ -18,6 +18,7 @@ class CoursesController < ApplicationController
   end
 
   def create 
+    @students = Student.all
     if params[:instructor_id] && @instructor = Instructor.find_by_id(params[:instructor_id])
       @course = @instructor.courses.build(course_params)
     else 
@@ -37,12 +38,14 @@ class CoursesController < ApplicationController
     # else
     @instructor = Instructor.find_by_id(params[:instructor_id])
     @course = Course.find_by_id(params[:id])
+    @students = Student.all
     # end
   end
 
   def edit
     @instructor = Instructor.find_by_id(params[:instructor_id])
     @course = Course.find_by_id(params[:id])
+    @students = Student.all
     redirect_to instructor_path(current_instructor) unless @course.instructor_id == current_instructor.id
   end
 
@@ -73,8 +76,6 @@ class CoursesController < ApplicationController
     params.require(:course).permit(:language, :level, :age_group, :class_size, :location, :day, :start_time, :end_time, :instructor_id, :student_id)
   end
 
-  def set_students
-    @students = Student.all
-  end
+
 
 end

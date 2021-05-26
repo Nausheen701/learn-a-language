@@ -28,13 +28,13 @@
         <%=  f.time_field :end_time %>
         <br>
         <%=  f.label "student" %>
-        <%= f.collection_select :student_id, Student.all, :id, :first_name %>
+        <%=  f.collection_select :student_id, Student.all, :id, :first_name %>
 
         <%= f.submit %>
     <% end%>
     
     <br>
-    <%= link_to "Your Courses", courses_path %>
+    <%= link_to "Your Courses", instructor_courses_path(@instructor) %>
     <br>
     <%= link_to "All Polyglot Instructors", instructors_path %>
     <br>
