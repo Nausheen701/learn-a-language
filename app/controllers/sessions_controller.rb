@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
     instructor = Instructor.find_or_create_by(uid: request.env['omniauth.auth'][:uid], email: request.env['omniauth.auth'][:info][:email]) do |u|
      u.provider = request.env['omniauth.auth'][:provider]
      u.first_name = request.env['omniauth.auth'][:info][:first_name]
-    #  u.last_name = request.env['omniauth.auth'][:info][:last_name]
+     u.last_name = request.env['omniauth.auth'][:info][:last_name]
      u.username = request.env['omniauth.auth'][:info][:first_name]
      u.password = SecureRandom.hex(10)
    end 
