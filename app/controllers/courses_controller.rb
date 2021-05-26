@@ -2,8 +2,7 @@ class CoursesController < ApplicationController
   # before_action :set_students, only: [:new, :create, :edit, :update]
 
   def index 
-    if params[:instructor_id]
-      @instructor = Instructor.find_by_id(params[:instructor_id])
+    if params[:instructor_id] && @instructor = Instructor.find_by_id(params[:instructor_id])
       @courses = @instructor.courses
     else
       @courses = Course.all
@@ -11,11 +10,8 @@ class CoursesController < ApplicationController
   end
 
   def new 
-    if params[:instructor_id] && @instructor = Instructor.find_by_id(params[:instructor_id])
-    
-      if @instructor == current_instructor
+    if params[:instructor_id] && @instructor = Instructor.find_by_id(params[:instructor_id]) 
         @course = @instructor.courses.build
-      end
     else
        redirect_to instructors_new_path(@instructor)
     end
@@ -36,13 +32,16 @@ class CoursesController < ApplicationController
   end
 
   def show 
-    if params[:instructor_id] && @instructor = Instructor.find_by_id(params[:instructor_id])
-    # else 
+    # if params[:instructor_id] && @instructor = Instructor.find_by_id(params[:instructor_id]) && @instructor == current_instructor
+    # redirect_to instructor_courses_path(current_instructor)
+    # else
+    @instructor = Instructor.find_by_id(params[:instructor_id])
     @course = Course.find_by_id(params[:id])
-    end
+    # end
   end
 
   def edit
+    @instructor = Instructor.find_by_id(params[:instructor_id])
     @course = Course.find_by_id(params[:id])
     redirect_to instructor_path(current_instructor) unless @course.instructor_id == current_instructor.id
   end
@@ -52,12 +51,13 @@ class CoursesController < ApplicationController
       @instructor = Instructor.find_by_id(params[:instructor_id])
       @course = Course.find_by_id(params[:id])
       if @course.update(course_params)
-        redirect_to course_path(@course)
+        # redirect_to course_path(@course)
+        redirect_to instructor_courses_path(@instructor)
+
       else  
         render :edit
       end
     end
-
 
   def destroy
     @instructor = Instructor.find_by_id(params[:instructor_id])

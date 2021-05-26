@@ -2,7 +2,6 @@
 <%= form_with model: [@instructor, @course] do |f| %>
     
         <%= f.hidden_field :instructor_id, value: @instructor.id %>
-
     
         <%=  f.label "language" %>
         <%=  f.text_field :language %>
@@ -28,7 +27,7 @@
         <%=  f.label "end time" %>
         <%=  f.time_field :end_time %>
         <br>
-        <%=  f.label "student(s)" %>
+        <%=  f.label "student" %>
         <%= f.collection_select :student_id, Student.all, :id, :first_name %>
 
         <%= f.submit %>
