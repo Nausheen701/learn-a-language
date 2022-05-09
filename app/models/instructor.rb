@@ -41,10 +41,6 @@ class Instructor < ApplicationRecord
     # 2- scope macro 
      scope :ins_courses, -> {joins(:courses).group('instructors.last_name')}
 
-    
-
-     
-
 
   # reload! => reload console with updated code
 end
